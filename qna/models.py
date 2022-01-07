@@ -22,6 +22,7 @@ class Post(models.Model):
     contest = models.ForeignKey(Contest, null=True, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, null=True, on_delete=models.CASCADE)
     private = models.BooleanField(default=True)
+    proceeding = models.BooleanField(default=True)
 
     @property
     def lecture(self):
