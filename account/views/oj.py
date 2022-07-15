@@ -314,7 +314,24 @@ class UsernameOrEmailCheck(APIView):
             result["email"] = User.objects.filter(email=data["email"].lower()).exists()
         if data.get("schoolssn"):
             result["schoolssn"] = User.objects.filter(schoolssn=data["schoolssn"]).exists()
+        if data.get("phonenum"):
+            result["phonenum"] = User.objects.filter(phonenum=data["phonenum"]).exists()
 
+        return self.success(result)
+
+class PhonenumCheck(APIView):
+    @validate_serializer(UsernameOrEmailCheckSerializer)
+    def post(self, request):
+        """
+        check phonenum is duplicate
+        """
+        data = request.data
+        # True means already exist.
+        result = {
+            "phonenum": False
+        }
+        if data.get("phonenum"):
+            result["phonenum"] = User.objects.filter(username=data["username"].lower()).exists()
         return self.success(result)
 
 class SchoolssnCheck(APIView):
@@ -331,6 +348,7 @@ class SchoolssnCheck(APIView):
         if data.get("schoolssn"):
             result["schoolssn"] = User.objects.filter(username=data["username"].lower()).exists()
         return self.success(result)
+
 
 class UserRegisterAPI(APIView):
     @validate_serializer(UserRegisterSerializer)
