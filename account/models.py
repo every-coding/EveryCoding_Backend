@@ -30,6 +30,7 @@ class User(AbstractBaseUser):
     realname = models.TextField(null=True)
     email = models.TextField(null=True)
     create_time = models.DateTimeField(auto_now_add=True, null=True)
+    phonenum = models.TextField()
     # for Student
     schoolssn = models.IntegerField(default=0)
     # One of UserType
