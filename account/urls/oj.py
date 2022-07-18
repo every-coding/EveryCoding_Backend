@@ -19,7 +19,6 @@ urlpatterns = [
     url(r"^reset_password/?$", ResetPasswordAPI.as_view(), name="reset_password_api"),
     url(r"^captcha/?$", CaptchaAPIView.as_view(), name="show_captcha"),
     url(r"^check_username_or_email", UsernameOrEmailCheck.as_view(), name="check_username_or_email"),
-    url(r"^check_schoolssc", SchoolssnCheck.as_view(), name="check_schoolssn"),
     url(r"^check_phonenum", PhonenumCheck.as_view(), name="check_phonenum"),
     url(r"^profile/?$", UserProfileAPI.as_view(), name="user_profile_api"),
     url(r"^profile/fresh_display_id", ProfileProblemDisplayIDRefreshAPI.as_view(), name="display_id_fresh"),

@@ -264,7 +264,7 @@ class UserAdminAPI(APIView):
 
         keyword = request.GET.get("keyword", None)
         if keyword:
-            user = user.filter(Q(schoolssn__icontains=keyword) |
+            user = user.filter(Q(phonenum__icontains=keyword) |
                                Q(realname__icontains=keyword) |
                                Q(username__icontains=keyword) |
                                Q(userprofile__real_name__icontains=keyword) |
