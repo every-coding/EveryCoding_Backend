@@ -67,10 +67,9 @@ class UserProfileAPI(APIView):
         for k, v in data.items():
             setattr(user_profile, k, v)
         user.realname = data['realname']
-        #test = User.objects.filter(schoolssn=data['schoolssn']).exclude(schoolssn=user.schoolssn).exists()
-        if User.objects.filter(schoolssn=data['schoolssn']).exclude(schoolssn=user.schoolssn).exists():
-            return self.error("중복된 학번입니다.")
-        user.schoolssn = data['schoolssn']
+        if User.objects.filter(phonenum=data['phonenum']).exclude(phonenum=user.phonenum).exists():
+            return self.error("중복된 전화번호입니다.")
+        user.phonenum = data['phonenum']
         user.save()
         user_profile.save()
         return self.success(UserProfileSerializer(user_profile, show_real_name=True).data)
@@ -332,21 +331,6 @@ class PhonenumCheck(APIView):
             result["phonenum"] = User.objects.filter(username=data["username"].lower()).exists()
         return self.success(result)
 
-class SchoolssnCheck(APIView):
-    @validate_serializer(UsernameOrEmailCheckSerializer)
-    def post(self, request):
-        """
-        check schoolssn is duplicate
-        """
-        data = request.data
-        # True means already exist.
-        result = {
-            "schoolssn": False
-        }
-        if data.get("schoolssn"):
-            result["schoolssn"] = User.objects.filter(username=data["username"].lower()).exists()
-        return self.success(result)
-
 
 class UserRegisterAPI(APIView):
     @validate_serializer(UserRegisterSerializer)
@@ -377,7 +361,7 @@ class UserRegisterAPI(APIView):
         lecture_signup_class에서 동일한 학번을 가진 값이 있는지 필터를 통해 구해오고,
         있는 경우, 해당 값들의 isallow를 전부 True로 수정한다.
         """
-        print("학번",data["schoolssn"])
+        print("전화번호",data["phonenum"])
         try:
             print("try")
             signup_list = signup_class.objects.filter(phonenum=data["phonenum"])
