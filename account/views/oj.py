@@ -354,7 +354,7 @@ class UserRegisterAPI(APIView):
         if User.objects.filter(phonenum=data["phonenum"]).exists():
             return self.error("전화번호가 이미 있습니다.")
         #print(data["realname"])
-        user = User.objects.create(username=data["username"], email=data["email"], phonenum=data["phonenum"], realname=data["realname"])
+        user = User.objects.create(username=data["username"], email=data["email"], phonenum=data["phonenum"], univ=data["univ"], realname=data["realname"])
 
         """
         2020-03-14 현재 수강신청 자동화 기능 개선

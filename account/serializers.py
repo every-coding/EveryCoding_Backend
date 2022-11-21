@@ -28,6 +28,7 @@ class UserRegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=64)
     phonenum = serializers.CharField(max_length=32)
     captcha = serializers.CharField()
+    univ = serializers.CharField(max_length=64)
 
 
 class UserChangePasswordSerializer(serializers.Serializer):
@@ -66,7 +67,7 @@ class UserAdminSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "realname", "phonenum", "username", "email", "admin_type", "problem_permission",
+        fields = ["id", "realname", "phonenum", "univ", "username", "email", "admin_type", "problem_permission",
                   "create_time", "last_login", "two_factor_auth", "open_api", "is_disabled"]
 
 class SimpleSignupSerializer(serializers.ModelSerializer):
