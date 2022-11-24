@@ -267,6 +267,7 @@ class UserAdminAPI(APIView):
             user = user.filter(Q(phonenum__icontains=keyword) |
                                Q(realname__icontains=keyword) |
                                Q(username__icontains=keyword) |
+                               Q(univ__icontains=keyword) |
                                Q(userprofile__real_name__icontains=keyword) |
                                Q(email__icontains=keyword))
         return self.success(self.paginate_data(request, user, UserAdminSerializer))

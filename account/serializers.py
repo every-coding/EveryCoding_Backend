@@ -28,7 +28,7 @@ class UserRegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=64)
     phonenum = serializers.CharField(max_length=32)
     captcha = serializers.CharField()
-    univ = serializers.CharField(max_length=64)
+    univ = serializers.CharField(max_length=254)
 
 
 class UserChangePasswordSerializer(serializers.Serializer):
