@@ -31,7 +31,7 @@ class User(AbstractBaseUser):
     email = models.TextField(null=True)
     create_time = models.DateTimeField(auto_now_add=True, null=True)
     phonenum = models.TextField()
-    Univ = models.TextField(defaul=' ')
+    univ = models.TextField(default=1)
     # for Student
     # One of UserType
     admin_type = models.TextField(default=AdminType.REGULAR_USER)
